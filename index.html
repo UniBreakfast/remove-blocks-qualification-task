@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Remove Blocks Game</title>
+
+  <link rel="stylesheet" href="water.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+  <main>
+    <header>
+      <h1 class="title">Remove Blocks Game</h1>
+      <div>
+        <div class="buttons">
+          <button id="startBtn">New Game</button>
+          <button id="pauseBtn">
+            <span>Pause</span>
+            <span>Continue</span>
+          </button>
+        </div>
+        <label>
+          <div>Points</div>
+          <div id="pointsView">999</div>
+        </label>
+        <label>
+          <div>Time left</div>
+          <div id="timeView">01:00</div>
+        </label>
+      </div>
+    </header>
+    <section id="gameBoard"></section>
+  </main>
+
+  <aside>
+    <ul id="menuBar">
+      <li><button>Normal</button></li>
+      <li><button>Special</button></li>
+      <li><button>Super</button></li>
+      <li><button>Experimental</button></li>
+    </ul>
+    <ul id="resultList">
+      <li>
+        <span class="name">Alex</span><span class="points">999</span>
+      </li>
+      <li>
+        <span class="name">Jake</span><span class="points">765</span>
+      </li>
+      <li>
+        <span class="name">Bob</span><span class="points">235</span>
+      </li>
+      <li>
+        <span class="name">Theresa</span><span class="points">18</span>
+      </li>
+      <li>
+        <span class="name">Stephen</span><span class="points">5</span>
+      </li>
+    </ul>
+  </aside>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  max-width: unset;
+  height: 100vh;
+  margin: 0;
+  padding: 10px;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+}
+
+aside {
+  width: 30%;
+  max-width: 350px;
+  display: flex;
+  flex-flow: column;
+}
+
+header {
+  height: 180px;
+}
+
+h1 {
+  text-align: center;
+}
+
+header>div {
+  display: flex;
+  justify-content: space-around;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+#gameBoard {
+  flex-grow: 1;
+  background-color: burlywood;
+}
+
+#menuBar {
+  padding-top: 10px;
+  height: 180px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#menuBar button {
+  padding: 5px 30px;
+}
+
+#resultList {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+#resultList>li {
+  display: flex;
+  justify-content: space-between;
+}
