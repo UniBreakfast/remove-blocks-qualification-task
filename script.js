@@ -4,13 +4,15 @@ const game = {
     board.adders.forEach(adderId => clearTimeout(adderId))
     board.adders = []
     timer.start(10000)
+    points.drop()
     points.show()
     board.addBlocks(7)
   },
   end() {
     if (!points.amount) return
-    endGameModal.showModal()
+    pauseBtn.hidden = true
     scoreView.innerText = points.amount
+    endGameModal.showModal()
   },
   pause() {},
   continue() {},
@@ -29,13 +31,14 @@ const board = {
     Object.assign(block.style, {
       width: `var(--${type})`,
       height: `var(--${type})`,
-      background: `hsl(${color} ${30+genRndNum(45)}% ${30+genRndNum(45)}%)`,
+      background: `hsl(${color} ${35+genRndNum(40)}% ${35+genRndNum(40)}%)`,
       left: genRndNum(gameBoard.offsetWidth - size) + 'px',
       top: genRndNum(gameBoard.offsetHeight - size) + 'px',
     })
     gameBoard.append(block)
   },
   addBlocks(num, type='normal', delay=400) {
+    if (num < 1) return
     const addProcedure = () => {
       if (timer.time < 0 || !num) {
         board.adders.forEach(adderId => clearTimeout(adderId))
@@ -71,12 +74,14 @@ const timer = {
     timer.show()
   },
   pause() {
+    pauseBtn.classList.add('paused')
     timer.paused = true
     clearInterval(timer.id)
     timer.time -= Date.now() - timer.lastUpdate
     timer.show()
   },
   run() {
+    pauseBtn.classList.remove('paused')
     timer.paused = false
     timer.lastUpdate = Date.now()
     timer.id = setInterval(() => {
@@ -158,7 +163,6 @@ startBtn.onclick = () => {
 pauseBtn.onclick = () => {
   if (timer.paused) {
     timer.run()
-    pauseBtn.classList.remove('paused')
   } else {
     timer.pause()
     pauseBtn.classList.add('paused')
@@ -166,6 +170,10 @@ pauseBtn.onclick = () => {
 }
 
 gameBoard.onclick = e => {
+  if (timer.paused) {
+    if (timer.time > 0) timer.run()
+    return
+  }
   if (e.target.classList.contains('block')) {
     const block = e.target
     const {type} = block.dataset
@@ -173,6 +181,7 @@ gameBoard.onclick = e => {
     if (type == 'normal') {
       block.remove()
       points.change(+reward)
+      board.addBlocks(genRndNum(3))
     }
   }
 }

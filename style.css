@@ -90,6 +90,7 @@ header label[hidden] {
 #resultList {
   flex-grow: 1;
   padding: 20px;
+  overflow: hidden;
 }
 
 #resultList>li {
