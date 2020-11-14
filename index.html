@@ -22,16 +22,16 @@
       <div>
         <div class="buttons">
           <button id="startBtn">New Game</button>
-          <button id="pauseBtn">
+          <button id="pauseBtn" hidden>
             <span>Pause</span>
             <span>Continue</span>
           </button>
         </div>
-        <label>
+        <label hidden>
           <div>Points</div>
           <div id="pointsView">999</div>
         </label>
-        <label>
+        <label hidden>
           <div>Time left</div>
           <div id="timeView">01:00</div>
         </label>
@@ -47,24 +47,24 @@
       <li><button>Super</button></li>
       <li><button>Experimental</button></li>
     </ul>
-    <ul id="resultList">
-      <li>
-        <span class="name">Alex</span><span class="points">999</span>
-      </li>
-      <li>
-        <span class="name">Jake</span><span class="points">765</span>
-      </li>
-      <li>
-        <span class="name">Bob</span><span class="points">235</span>
-      </li>
-      <li>
-        <span class="name">Theresa</span><span class="points">18</span>
-      </li>
-      <li>
-        <span class="name">Stephen</span><span class="points">5</span>
-      </li>
-    </ul>
+    <ul id="resultList">    </ul>
   </aside>
+
+  <dialog id="endGameModal">
+    <h2>Game Over</h2>
+    <div class="message">
+      <span>Your Score</span>
+      <span id="scoreView">987</span>
+    </div>
+    <div class="prompt">
+      <label>
+        Your Name: <input id="nameInput">
+      </label>
+    </div>
+    <div class="buttons">
+      <button id="saveResultBtn">Save</button>
+    </div>
+  </dialog>
 
 </body>
 

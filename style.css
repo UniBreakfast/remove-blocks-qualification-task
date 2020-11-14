@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   display: flex;
   max-width: unset;
@@ -44,9 +48,32 @@ ul {
   flex-flow: column;
 }
 
+header .buttons {
+  width: 280px;
+  display: flex;
+}
+
+header label[hidden] {
+  display: unset !important;
+  visibility: hidden;
+}
+
+#pauseBtn {
+  width: 125px;
+}
+
+#pauseBtn.paused>:first-child, #pauseBtn:not(.paused)>:last-child {
+  display: none;
+}
+
 #gameBoard {
   flex-grow: 1;
-  background-color: burlywood;
+  background-color: cornsilk;
+  position: relative;
+}
+
+.block {
+  position: absolute;
 }
 
 #menuBar {
@@ -68,4 +95,31 @@ ul {
 #resultList>li {
   display: flex;
   justify-content: space-between;
+}
+
+dialog {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  top: 30%;
+  border: none;
+}
+
+dialog::backdrop {
+  background-color: #4444;
+}
+
+dialog>div {
+  margin-top: 20px;
+}
+
+dialog>.prompt>label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog>.prompt>label>input {
+  margin-left: 30px;
 }
