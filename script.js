@@ -3,16 +3,17 @@ const game = {
     board.clear()
     board.adders.forEach(adderId => clearTimeout(adderId))
     board.adders = []
-    timer.start(10000)
+    timer.start()
     points.drop()
     points.show()
-    board.addBlocks(7)
+    // board.addBlocks(7)
+    board.addBlocks(5, 'big', 3500)
   },
   end() {
     if (!points.amount) return
     pauseBtn.hidden = true
     scoreView.innerText = points.amount
-    endGameModal.showModal()
+    if (timer.time <= 0) endGameModal.showModal()
   },
   pause() {},
   continue() {},
@@ -22,6 +23,7 @@ const game = {
 const board = {
   blockTypes: {
     normal: {size: 45, color: 120, reward: 1},
+    big: {size: 60, color: 40, reward: 4},
   },
   addBlock(type='normal') {
     const {size, color} = board.blockTypes[type]
@@ -97,6 +99,7 @@ const timer = {
     clearInterval(timer.id)
     timer.time -= Date.now() - timer.lastUpdate
     timer.hide()
+
     game.end()
   },
   paused: true,
@@ -178,10 +181,10 @@ gameBoard.onclick = e => {
     const block = e.target
     const {type} = block.dataset
     const {reward} = board.blockTypes[type]
-    if (type == 'normal') {
+    if (type) { ///
       block.remove()
       points.change(+reward)
-      board.addBlocks(genRndNum(3))
+      board.addBlocks(genRndNum(3) + !gameBoard.children.length)
     }
   }
 }
