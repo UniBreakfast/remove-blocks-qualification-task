@@ -74,6 +74,7 @@ header label[hidden] {
 
 .block {
   position: absolute;
+  border-radius: 5%;
 }
 
 #menuBar {

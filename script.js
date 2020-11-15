@@ -6,8 +6,8 @@ const game = {
     timer.start()
     points.drop()
     points.show()
-    // board.addBlocks(7)
-    board.addBlocks(5, 'big', 3500)
+    board.addBlocks(7, 'mostly normal')
+    // board.addBlocks(5, 'big', 3500)
   },
   end() {
     if (!points.amount) return
@@ -23,7 +23,7 @@ const game = {
 const board = {
   blockTypes: {
     normal: {size: 45, color: 120, reward: 1},
-    big: {size: 60, color: 40, reward: 4},
+    big: {size: 60, color: 15, reward: 4},
   },
   addBlock(type='normal') {
     const {size, color} = board.blockTypes[type]
@@ -33,7 +33,7 @@ const board = {
     Object.assign(block.style, {
       width: `var(--${type})`,
       height: `var(--${type})`,
-      background: `hsl(${color} ${35+genRndNum(40)}% ${35+genRndNum(40)}%)`,
+      background: `hsl(${color} ${60+genRndNum(35)}% ${45+genRndNum(30)}%)`,
       left: genRndNum(gameBoard.offsetWidth - size) + 'px',
       top: genRndNum(gameBoard.offsetHeight - size) + 'px',
     })
@@ -48,7 +48,9 @@ const board = {
         return
       }
       if (!timer.paused) {
-        board.addBlock(type)
+        if (type == 'mostly normal')
+          board.addBlock(genRndNum(7)? 'normal' : 'big')
+        else board.addBlock(type)
         num--
       }
       board.adders.push(setTimeout(addProcedure, delay))
@@ -184,7 +186,8 @@ gameBoard.onclick = e => {
     if (type) { ///
       block.remove()
       points.change(+reward)
-      board.addBlocks(genRndNum(3) + !gameBoard.children.length)
+      board.addBlocks(genRndNum(3) + !gameBoard.children.length,
+        'mostly normal')
     }
   }
 }
